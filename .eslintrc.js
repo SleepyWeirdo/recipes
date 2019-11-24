@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'airbnb',
+    'google',
   ],
   globals: {
     Atomics: 'readonly',
@@ -22,5 +22,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    "linebreak-style": 0,
   },
 };
