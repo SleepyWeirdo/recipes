@@ -1,13 +1,19 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Recipe from './Components/Recipe';
 import Header from './Components/Header';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import yellow from '@material-ui/core/colors/amber';
+
 // import './App.scss';
 import {
+  TextField,
   Button,
   Grid,
   Box,
-  Typography
+  Typography,
+  Container,
 } from '@material-ui/core';
+// import { purple } from '@material-ui/core/colors';
 
 const App = () => {
   const APP_ID = '84f40488';
@@ -15,7 +21,16 @@ const App = () => {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('chicken');
+  const [query, setQuery] = useState('butter');
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: yellow,
+      secondary: {
+        main: '#0277bd',
+      },
+    },
+  });
 
   const getRecipes = async () => {
     const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
@@ -38,24 +53,31 @@ const App = () => {
   }, [query]);
 
   return (
-    <Fragment>
+    <ThemeProvider theme={theme}>
       <div className="App">
         <Header />
-        <form onSubmit={getSearch} className="search-form">
-          <input
-            className="search-bar"
-            type="text"
-            value={search}
-            onChange={updateSearch}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-          >
-            Search
-          </Button>
-        </form>
+        <Grid container >
+          <form onSubmit={getSearch} style={{'width': '100%'}} className="search-form" noValidate autoComplete="off">
+            <Grid item xs={8}>
+              <TextField
+                fullWidth
+                margin="normal"
+                label="Type your ingredient"
+                variant="outlined"
+                onChange={updateSearch}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+              Search
+              </Button>
+            </Grid>
+          </form>
+        </Grid>
         <Box>
           <Typography variant="h5" style={{padding: 20}}>Showing recipes for: {query}</Typography>
         </Box>
@@ -79,7 +101,7 @@ const App = () => {
           ))}
         </Grid>
       </div>
-    </Fragment>
+    </ThemeProvider>
   );
 };
 
