@@ -1,9 +1,5 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
+import {AppBar, Toolbar, IconButton, Typography, InputBase, Menu, MenuItem} from '@material-ui/core';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -55,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       'width': 120,
       '&:focus': {
-        width: 200,
+        width: 300,
       },
     },
   },
@@ -67,6 +63,12 @@ const Header = () => {
 
   return (
     <AppBar position="static">
+      {/* <Menu>
+        <MenuItem>Home</MenuItem>
+        <MenuItem>Add recipe</MenuItem>
+        <MenuItem>Search recipe</MenuItem>
+        <MenuItem>Favourites recipes</MenuItem>
+      </Menu> */}
       <Toolbar>
         <IconButton
           edge="start"
@@ -77,7 +79,7 @@ const Header = () => {
           <MenuIcon />
         </IconButton>
         <Typography className={classes.title} variant="h6" noWrap>
-          Material-UI
+          Recipes4You
         </Typography>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
