@@ -19,4 +19,4 @@ const Recipe = ({title, calories, img, ingredients}) => {
     );
 }
 
-export default Recipe;
+export default Recipe; 
