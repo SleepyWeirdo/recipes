@@ -1,0 +1,38 @@
+.recipe {
+    border-radius: 10px;
+    box-shadow: 0 5px 20px #f1f1f1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background: #fff;
+    align-items: center;
+    padding: 15px;
+    flex: 0 0 33%;
+    margin: 5px 0;
+}
+
+.recipe > * {
+    flex: 0 0 50%;
+}
+
+.recipe div p {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.recipe h1 {
+    font-size: 14px;
+}
+
+.recipe ol {
+    font-size: 12px;
+}
+
+.recipe li {
+    padding: 3px 0;
+}
+
+.recipe img {
+    max-height: 100px;
+    border-radius: 10px;
+}
