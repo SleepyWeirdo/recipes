@@ -21,7 +21,7 @@ const App = () => {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('butter');
+  const [query, setQuery] = useState('butter'); 
 
   const theme = createMuiTheme({
     palette: {
