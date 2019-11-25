@@ -14,7 +14,6 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 
 
 const Recipe = ({title, calories, img, ingredients}) => {
-
   const [openList, setOpenList] = useState(false);
 
   const showHandler = () => {

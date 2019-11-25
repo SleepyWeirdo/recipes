@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Recipe from './Components/Recipe';
 import Header from './Components/Header';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import yellow from '@material-ui/core/colors/amber';
 
 // import './App.scss';
@@ -11,7 +11,6 @@ import {
   Grid,
   Box,
   Typography,
-  Container,
 } from '@material-ui/core';
 // import { purple } from '@material-ui/core/colors';
 

@@ -1,8 +1,15 @@
-import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, InputBase } from '@material-ui/core';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  InputBase,
+} from '@material-ui/core';
+import {fade, makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import MainMenu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,42 +67,45 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const [toggled, setToggled] = useState(false);
+
+  const toggleDrawer = () => {
+    setToggled(!toggled);
+  }
 
   return (
-    <AppBar position="static">
-      {/* <Menu>
-        <MenuItem>Home</MenuItem>
-        <MenuItem>Add recipe</MenuItem>
-        <MenuItem>Search recipe</MenuItem>
-        <MenuItem>Favourites recipes</MenuItem>
-      </Menu> */}
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="open drawer"
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography className={classes.title} variant="h6" noWrap>
-          Recipes4You
-        </Typography>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+    <>
+      <MainMenu drawerOpen={toggled} drawerClose={toggleDrawer} />
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Search for Recipes
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{'aria-label': 'search'}}
+            />
           </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{'aria-label': 'search'}}
-          />
-        </div>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
 
