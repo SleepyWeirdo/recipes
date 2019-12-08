@@ -3,7 +3,6 @@ import Recipe from './Components/Recipe';
 import Header from './Components/Header';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import yellow from '@material-ui/core/colors/amber';
-
 // import './App.scss';
 import {
   TextField,
@@ -12,7 +11,6 @@ import {
   Box,
   Typography,
 } from '@material-ui/core';
-// import { purple } from '@material-ui/core/colors';
 
 const App = () => {
   const APP_ID = '84f40488';
@@ -55,8 +53,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Header />
-        <Grid container >
-          <form onSubmit={getSearch} style={{'width': '100%'}} className="search-form" noValidate autoComplete="off">
+        <form onSubmit={getSearch} style={{'width': '100%'}} className="search-form" noValidate autoComplete="off">
+          <Grid
+            alignItems="center"
+            justify="space-between"
+            spacing={5}
+            container>
             <Grid item xs={8}>
               <TextField
                 fullWidth
@@ -75,8 +77,8 @@ const App = () => {
               Search
               </Button>
             </Grid>
-          </form>
-        </Grid>
+          </Grid>
+        </form>
         <Box>
           <Typography variant="h5" style={{padding: 20}}>Showing recipes for: {query}</Typography>
         </Box>
@@ -88,7 +90,7 @@ const App = () => {
               xs={12}
               sm={6}
               md={4}
-              style={{padding: 20}}
+              // style={{padding: 20}}
             >
               <Recipe
                 title={recipe.recipe.label}

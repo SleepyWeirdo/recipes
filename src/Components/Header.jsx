@@ -9,7 +9,7 @@ import {
 import {fade, makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import MainMenu from './Menu';
+import Drawer from './Drawer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,7 +75,7 @@ const Header = () => {
 
   return (
     <>
-      <MainMenu drawerOpen={toggled} drawerClose={toggleDrawer} />
+      <Drawer drawerOpen={toggled} drawerClose={toggleDrawer} />
       <AppBar position="static">
         <Toolbar>
           <IconButton

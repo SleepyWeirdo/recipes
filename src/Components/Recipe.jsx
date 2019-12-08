@@ -8,13 +8,23 @@ import {
   List,
   ListItem,
   ListItemText,
-  Collapse} from '@material-ui/core';
+  Collapse,
+  makeStyles} from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import {amber} from '@material-ui/core/colors';
 
+
+const useStyles = makeStyles(theme => ({
+  avatar: {
+    color: '#fff',
+    backgroundColor: amber[500],
+  }
+}))
 
 const Recipe = ({title, calories, img, ingredients}) => {
   const [openList, setOpenList] = useState(false);
+  const classes = useStyles();
 
   const showHandler = () => {
     setOpenList(!openList);
@@ -26,7 +36,7 @@ const Recipe = ({title, calories, img, ingredients}) => {
     >
       <CardContent>
         <div>
-          <Avatar>{title.slice(0, 2)}</Avatar><Typography variant="h5">{title}</Typography>
+          <Avatar className={classes.avatar}>{title.slice(0, 2)}</Avatar><Typography variant="h5">{title}</Typography>
           <Avatar src={img} alt={title} />
         </div>
         <List dense={true}>
