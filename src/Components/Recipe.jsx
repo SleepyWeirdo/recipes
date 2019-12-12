@@ -28,10 +28,10 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
-    backgroundSize: 'cover'
+    paddingTop: '50%',
+    backgroundSize: 'cover',
   }
-}))
+}));
 
 const Recipe = ({title, calories, cautions, img, ingredients}) => {
   const [openList, setOpenList] = useState(false);

@@ -10,7 +10,14 @@ import {
   Grid,
   Box,
   Typography,
+  makeStyles,
 } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+  formStyle: {
+    width: '100%',
+  }
+}));
 
 const App = () => {
   const APP_ID = '84f40488';
@@ -18,7 +25,8 @@ const App = () => {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('milk'); 
+  const [query, setQuery] = useState('milk');
+  const classes = useStyles();
 
   const theme = createMuiTheme({
     palette: {
@@ -53,7 +61,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Header />
-        <form onSubmit={getSearch} style={{'width': '100%'}} className="search-form" noValidate autoComplete="off">
+        <form onSubmit={getSearch} className={classes.formStyle} className="search-form" noValidate autoComplete="off">
           <Grid
             alignItems="center"
             justify="space-between"
@@ -87,7 +95,7 @@ const App = () => {
               key={index}
               xs={12}
               sm={6}
-              md={4}
+              md={3}
             >
               <Recipe
                 title={recipe.recipe.label}
