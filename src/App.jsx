@@ -7,6 +7,12 @@ import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import yellow from '@material-ui/core/colors/amber';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
+const useStyles = makeStyles(theme => ({
+  formStyle: {
+    width: '100%',
+  }
+}));
+
 const App = () => {
   const APP_ID = '84f40488';
   const APP_KEY = 'ed94b0663f19eada2ae9b3a9fabc3e19';
