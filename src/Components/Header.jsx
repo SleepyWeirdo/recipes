@@ -9,7 +9,7 @@ import {
 import {fade, makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import Drawer from './Drawer';
+import MainMenu from './Drawer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     'borderRadius': theme.shape.borderRadius,
     'backgroundColor': fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.5),
     },
     'marginLeft': 0,
     'width': '100%',
@@ -68,14 +68,15 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   const [toggled, setToggled] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const toggleDrawer = () => {
     setToggled(!toggled);
-  }
+  };
 
   return (
     <>
-      <Drawer drawerOpen={toggled} drawerClose={toggleDrawer} />
+      <MainMenu drawerOpen={toggled} drawerClose={toggleDrawer} />
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -90,7 +91,7 @@ const Header = () => {
           <Typography className={classes.title} variant="h6" noWrap>
             Search for Recipes
           </Typography>
-          <div className={classes.search}>
+          <div visibility={visible} className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>

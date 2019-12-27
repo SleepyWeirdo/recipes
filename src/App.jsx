@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Recipe from './Components/Recipe';
 import Header from './Components/Header';
+import Home from './Components/Home';
+import Searcher from './Components/Search';
+import RecipeList from './Components/RecipeList';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import yellow from '@material-ui/core/colors/amber';
-// import './App.scss';
-import {
-  TextField,
-  Button,
-  Grid,
-  Box,
-  Typography,
-} from '@material-ui/core';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const App = () => {
   const APP_ID = '84f40488';
@@ -18,7 +13,7 @@ const App = () => {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  const [query, setQuery] = useState('milk'); 
+  const [query, setQuery] = useState('milk');
 
   const theme = createMuiTheme({
     palette: {
@@ -52,53 +47,20 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Header />
-        <form onSubmit={getSearch} style={{'width': '100%'}} className="search-form" noValidate autoComplete="off">
-          <Grid
-            alignItems="center"
-            justify="space-between"
-            spacing={5}
-            container>
-            <Grid item xs={8}>
-              <TextField
-                fullWidth
-                margin="normal"
-                label="Type your ingredient"
-                variant="outlined"
-                onChange={updateSearch}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-              >
-              Search
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-        <Box><Typography variant="h5" style={{padding: 20}}>Showing recipes for: {query}</Typography></Box>
-        <Grid container spacing={3} className="recipes" style={{margin: 'auto', maxWidth: '70%',}}>
-          {recipes.map((recipe, index) => (
-            <Grid
-              item
-              key={index}
-              xs={12}
-              sm={6}
-              md={4}
-            >
-              <Recipe
-                title={recipe.recipe.label}
-                calories={recipe.recipe.calories}
-                cautions={recipe.recipe.cautions}
-                img={recipe.recipe.image}
-                ingredients={recipe.recipe.ingredients}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <Router>
+          <Header />
+          <Searcher getSearch={getSearch} updateSearch={updateSearch}/>
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/Home' component={Home} />
+            <Route path='/Search'>
+              <RecipeList recipes={recipes} query={query} />
+            </Route>
+            <Route path='/Favourites'>
+                  lol
+            </Route>
+          </Switch>
+        </Router>
       </div>
     </ThemeProvider>
   );

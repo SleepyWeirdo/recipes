@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import {
   Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
+  MenuList,
+  MenuItem,
   Divider,
 } from '@material-ui/core';
 import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
@@ -17,7 +17,6 @@ const useStyles = makeStyles({
 });
 
 const MainMenu = (props) => {
-
   const classes = useStyles();
 
   const menuList = () => (
@@ -27,24 +26,19 @@ const MainMenu = (props) => {
       // onClick={toggleDrawer}
       // onKeyDown={toggleDrawer}
     >
-      <List>
-        {['Home', 'Search recipes', 'Favourites', 'Specials'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon><MoreVertRoundedIcon/></ListItemIcon>
-            {/* Jak dodać inne ikonki w zależności od itemu */}
-            <ListItemText primary={text} />
-          </ListItem>
+      <MenuList>
+        {['Home', 'Search', 'Favourites', 'Specials'].map((text, index) => (
+          <MenuItem key={text} component={Link} to={`/${text}`} onClick={() => props.drawerClose()}>
+            <MoreVertRoundedIcon />{text}
+          </MenuItem>
         ))}
-      </List>
+      </MenuList>
       <Divider />
-      <List>
-        {['Register', 'Login', 'Contact'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon><MoreVertRoundedIcon/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <MenuList>
+        <MenuItem component={Link} to="/favourites">
+        Test
+        </MenuItem>
+      </MenuList>
     </div>
   );
 
@@ -55,8 +49,13 @@ const MainMenu = (props) => {
     >
       {menuList()}
     </Drawer>
-  )
-}
+  );
+};
+
+MainMenu.propTypes = {
+  drawerOpen: PropTypes.bool,
+  drawerClose: PropTypes.func,
+};
 
 
 export default MainMenu;

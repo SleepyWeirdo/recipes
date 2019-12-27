@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// import style from './recipe.module.css';
+import PropTypes from 'prop-types';
 import {
   Avatar,
   Chip,
@@ -21,7 +21,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import {amber} from '@material-ui/core/colors';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   avatar: {
     color: '#fff',
     backgroundColor: amber[500],
@@ -29,9 +29,9 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    backgroundSize: 'cover'
-  }
-}))
+    backgroundSize: 'cover',
+  },
+}));
 
 const Recipe = ({title, calories, cautions, img, ingredients}) => {
   const [openList, setOpenList] = useState(false);
@@ -51,12 +51,16 @@ const Recipe = ({title, calories, cautions, img, ingredients}) => {
 
       <CardHeader
         avatar={
-          <Avatar className={classes.avatar}>{title.slice(0, 2).toLowerCase()}</Avatar>
+          <Avatar className={classes.avatar}>
+            {title.slice(0, 2).toLowerCase()}
+          </Avatar>
         }
         title={title}
         subheader={`Calories: ${calories.toFixed()}`}
         action={
-          <IconButton aria-label="settings" onClick={() => {setRising(!rising)}} >
+          <IconButton aria-label="settings" onClick={() => {
+            setRising(!rising);
+          }} >
             <MoreVertIcon />
           </IconButton>
         }
@@ -94,6 +98,14 @@ const Recipe = ({title, calories, cautions, img, ingredients}) => {
       </Collapse>
     </Card>
   );
+};
+
+Recipe.propTypes = {
+  title: PropTypes.string,
+  calories: PropTypes.number,
+  cautions: PropTypes.string,
+  img: PropTypes.string,
+  ingredients: PropTypes.string,
 };
 
 export default Recipe;
