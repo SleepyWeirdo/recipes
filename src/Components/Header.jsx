@@ -56,19 +56,18 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      'width': 120,
+      'width': 220,
       '&:focus': {
-        width: 300,
+        width: 400,
       },
     },
   },
 }));
 
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyles();
   const [toggled, setToggled] = useState(false);
-  const [visible, setVisible] = useState(false);
 
   const toggleDrawer = () => {
     setToggled(!toggled);
@@ -89,20 +88,24 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Search for Recipes
+            Showing recipes for {props.query}
           </Typography>
-          <div visibility={visible} className={classes.search}>
+          <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{'aria-label': 'search'}}
-            />
+            <form onSubmit={props.getSearch}>
+              <InputBase
+                placeholder="Search for recipe…"
+                autoFocus={true}
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{'aria-label': 'search'}}
+                onChange={props.updateSearch}
+              />
+            </form>
           </div>
         </Toolbar>
       </AppBar>

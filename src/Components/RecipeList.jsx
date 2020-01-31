@@ -1,20 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import Recipe from './Recipe';
-import {
-  Box,
-  Typography,
-  Grid,
-} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 
-const RecipeList = ({recipes, query}) => {
+const RecipeList = ({recipes}) => {
+  const [favourites, setFavourites] = useState([]);
+
+  useEffect(() => {
+    console.log(favourites);
+  }, [favourites]);
+
   return (
     <>
-      <Box>
-        <Typography variant="h5" style={{padding: 20}}>
-          Showing recipes for: {query}
-        </Typography>
-      </Box>
       <Grid container
         spacing={3}
         className="recipes"
@@ -33,6 +30,8 @@ const RecipeList = ({recipes, query}) => {
               cautions={recipe.recipe.cautions}
               img={recipe.recipe.image}
               ingredients={recipe.recipe.ingredients}
+              favourites={favourites}
+              addFavourites={setFavourites}
             />
           </Grid>
         ))}

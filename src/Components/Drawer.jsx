@@ -27,7 +27,7 @@ const MainMenu = (props) => {
       // onKeyDown={toggleDrawer}
     >
       <MenuList>
-        {['Home', 'Search', 'Favourites', 'Specials'].map((text, index) => (
+        {['Home', 'Search', 'Favourites', 'Posts'].map((text, index) => (
           <MenuItem key={text} component={Link} to={`/${text}`} onClick={() => props.drawerClose()}>
             <MoreVertRoundedIcon />{text}
           </MenuItem>
